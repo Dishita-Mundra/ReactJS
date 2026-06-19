@@ -1,3 +1,8 @@
+function customrender(reactElement, container) {
+    const domElement = document.createElement
+        (reactElement.type)
+}
+
 const reactElement = {
     type: 'a',
     props: {
@@ -8,3 +13,5 @@ const reactElement = {
 }
 
 const mainContainer = document.querySelector("#root");
+
+customrender(reactElement, mainContainer)
