@@ -26,6 +26,8 @@ const anotherElement = (
   <a href="https://google.com" target='_blank'>Visit google</a>
 )
 
+const anotherUser = "dishita mundra"
+
 const reactElement = React.createElement(
   'a',
   { href: 'https://google.com', target: '_blank' },
