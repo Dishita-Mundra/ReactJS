@@ -9,7 +9,7 @@ function App() {
   let counter = 5
 
   const addValue = () => {
-    console.log("value");
+    console.log("value added", Math.random());
   }
 
   return (
