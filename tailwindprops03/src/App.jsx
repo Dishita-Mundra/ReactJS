@@ -9,7 +9,7 @@ function App() {
 
   return (
     <>
-      <h1 className='bg-green-400 text-blue'>Tailwind Test</h1>
+      <h1 className='bg-green-400 text-black'>Tailwind Test</h1>
     </>
   )
 }
