@@ -6,6 +6,7 @@ import './App.css'
 function App() {
   return (
     <>
+    
       <h1 className="max-w-2xl mx-auto bg-green-400 text-black p-4 rounded-xl mb-4">
         Tailwind test
       </h1>
