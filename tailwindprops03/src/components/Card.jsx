@@ -1,7 +1,7 @@
 import React from 'react'
 
 function Card(props) {
-    console.log("props", props);
+    console.log(props.username);
 
         return (
             <div className="relative h-50 w-50 rounded-md">
