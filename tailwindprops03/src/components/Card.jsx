@@ -1,7 +1,7 @@
 import React from 'react'
 
-function Card(props) {
-    console.log(props.username);
+function Card({username, btnText}) {
+    console.log(username);
 
         return (
             <div className="relative h-50 w-50 rounded-md">
@@ -15,7 +15,7 @@ function Card(props) {
 
                 <div className="absolute bottom-4 left-4 text-left">
                     <h1 className="text-lg font-semibold text-white">
-                        Delba
+                        {username} 
                     </h1>
 
                     <p className="mt-2 text-sm text-gray-300">
@@ -24,7 +24,7 @@ function Card(props) {
                     </p>
 
                     <button className="mt-2 inline-flex cursor-pointer items-center text-sm font-semibold text-white">
-                        View Profile →
+                        {btnText} →
                     </button>
                 </div>
             </div>
