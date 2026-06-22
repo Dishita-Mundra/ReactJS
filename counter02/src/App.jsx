@@ -12,7 +12,17 @@ function App() {
 
   const addValue = () => {
     if (counter < 20) {
-      setCounter(counter + 1)
+      // update as earlier
+      // setCounter(counter + 1)
+      // setCounter(counter + 1)
+      // setCounter(counter + 1)
+      // setCounter(counter + 1)
+
+      // counter value update with how many setCounter written
+      setCounter(prevCounter => prevCounter + 1)
+      setCounter(prevCounter => prevCounter + 1)
+      setCounter(prevCounter => prevCounter + 1)
+      setCounter(prevCounter => prevCounter + 1)
     }
   }
 
