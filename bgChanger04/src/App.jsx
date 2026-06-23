@@ -63,10 +63,10 @@ function App() {
             Purple</button>
 
             <button 
-            onClick={() => setColor("blue")}
+            onClick={() => setColor("lavender")}
             className='outline-none px-4 py-1 rounded-full text-white shadow-;lg'
-            style={{backgroundColor: "blue"}}>
-            Blue</button>
+            style={{backgroundColor: "lavender"}}>
+            Lavender</button>
 
             <button 
             onClick={() => setColor("blue")}
