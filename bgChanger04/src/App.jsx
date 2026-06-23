@@ -31,6 +31,55 @@ function App() {
             className='outline-none px-4 py-1 rounded-full text-white shadow-;lg'
             style={{backgroundColor: "blue"}}>
             Blue</button>
+
+            <button 
+            onClick={() => setColor("olive")}
+            className='outline-none px-4 py-1 rounded-full text-white shadow-;lg'
+            style={{backgroundColor: "olive"}}>
+            Olive</button>
+
+            <button 
+            onClick={() => setColor("gray")}
+            className='outline-none px-4 py-1 rounded-full text-white shadow-;lg'
+            style={{backgroundColor: "gray"}}>
+            Gray</button>
+
+            <button 
+            onClick={() => setColor("blue")}
+            className='outline-none px-4 py-1 rounded-full text-white shadow-;lg'
+            style={{backgroundColor: "blue"}}>
+            Blue</button>
+
+            <button 
+            onClick={() => setColor("blue")}
+            className='outline-none px-4 py-1 rounded-full text-white shadow-;lg'
+            style={{backgroundColor: "blue"}}>
+            Blue</button>
+
+            <button 
+            onClick={() => setColor("blue")}
+            className='outline-none px-4 py-1 rounded-full text-white shadow-;lg'
+            style={{backgroundColor: "blue"}}>
+            Blue</button>
+
+            <button 
+            onClick={() => setColor("blue")}
+            className='outline-none px-4 py-1 rounded-full text-white shadow-;lg'
+            style={{backgroundColor: "blue"}}>
+            Blue</button>
+
+            <button 
+            onClick={() => setColor("blue")}
+            className='outline-none px-4 py-1 rounded-full text-white shadow-;lg'
+            style={{backgroundColor: "blue"}}>
+            Blue</button>
+
+            <button 
+            onClick={() => setColor("blue")}
+            className='outline-none px-4 py-1 rounded-full text-white shadow-;lg'
+            style={{backgroundColor: "blue"}}>
+            Blue</button>
+
           </div>
       </div>
     </div>
