@@ -14,15 +14,21 @@ function App() {
 
           <div className='flex flex-wrap justify-center gap-3 shadow-lg bg-white px-2 py-3 rounded-3xl'>
 
-            <button className='outline-none px-4 py-1 rounded-full text-white shadow-;lg'
+            <button 
+            onClick={() => setColor("red")}
+            className='outline-none px-4 py-1 rounded-full text-white shadow-;lg'
             style={{backgroundColor: "red"}}>
             Red</button>
 
-            <button className='outline-none px-4 py-1 rounded-full text-white shadow-;lg'
+            <button 
+            onClick={() => setColor("green")}
+            className='outline-none px-4 py-1 rounded-full text-white shadow-;lg'
             style={{backgroundColor: "green"}}>
             Green</button>
 
-            <button className='outline-none px-4 py-1 rounded-full text-white shadow-;lg'
+            <button 
+            onClick={() => setColor("blue")}
+            className='outline-none px-4 py-1 rounded-full text-white shadow-;lg'
             style={{backgroundColor: "blue"}}>
             Blue</button>
           </div>
