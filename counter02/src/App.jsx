@@ -11,6 +11,7 @@ function App() {
   // let counter = 5
 
   const addValue = () => {
+    
     if (counter < 20) {
       // update as earlier
       // setCounter(counter + 1)
