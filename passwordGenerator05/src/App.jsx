@@ -8,17 +8,7 @@ function App() {
   const [count, setCount] = useState(0)
 
   return (
-    <>
-      function App() {
-  return (
-    <div className="bg-red-500 w-screen h-screen">
-      Test
-    </div>
-  )
-}
-
-export default App
-    </>
+    <h1>Password Generator</h1>
   )
 }
 
