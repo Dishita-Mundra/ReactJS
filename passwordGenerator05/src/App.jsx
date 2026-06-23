@@ -14,19 +14,22 @@ function App() {
     if (numAll) str += "0123456789"
     if (charAll) str += "!@#$%^&*-_+=[]{}~`"
 
-    for (let i = 1;i <= array.length; i++) {
+    for (let i = 1; i <= array.length; i++) {
       let char = Math.floor(Math.random() * str.length + 1)
       pass = str.charAt(char)
-      
+
     }
+
+    setPassword(pass)
 
   }, [length, numAll, charAll, setPassword])
 
   return (
-    <h1
-      className='text-4xl text-center text-white'
-    >
-      Password Generator</h1>
+    <>
+      <div className=''>
+
+      </div>
+    </>
   )
 }
 
