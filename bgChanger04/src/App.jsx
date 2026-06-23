@@ -69,16 +69,16 @@ function App() {
             Lavender</button>
 
             <button 
-            onClick={() => setColor("blue")}
+            onClick={() => setColor("white")}
             className='outline-none px-4 py-1 rounded-full text-white shadow-;lg'
-            style={{backgroundColor: "blue"}}>
-            Blue</button>
+            style={{backgroundColor: "white"}}>
+            White</button>
 
             <button 
-            onClick={() => setColor("blue")}
+            onClick={() => setColor("black")}
             className='outline-none px-4 py-1 rounded-full text-white shadow-;lg'
-            style={{backgroundColor: "blue"}}>
-            Blue</button>
+            style={{backgroundColor: "black"}}>
+            Black</button>
 
           </div>
       </div>
@@ -86,4 +86,4 @@ function App() {
   )
 }
 
-export default App
+export default App;
