@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react'
+import { useState, useCallback, useEffect } from 'react'
 
 function App() {
   const [length, setLength] = useState(8);
@@ -22,6 +22,10 @@ function App() {
     setPassword(pass)
 
   }, [length, numAll, charAll, setPassword])
+
+  useEffect(() => {
+    passwordGenerator()
+  }, [length, numAll, charAll, passwordGenerator])
 
   return (
     <>
@@ -74,6 +78,20 @@ function App() {
             />
             <label
               htmlFor="numberInput">Numbers
+            </label>
+          </div>
+
+          <div className='flex items-center gap-x-1'>
+            <input
+              type="checkbox"
+              defaultChecked={charAll}
+              id='characterInput'
+              onChange={() => {
+                setCharAll((prev) => !prev);
+              }}
+            />
+            <label
+              htmlFor="numberInput">Characters
             </label>
           </div>
 
