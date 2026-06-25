@@ -2,18 +2,24 @@ import { useState } from 'react'
 import { InputBox } from './components';
 import useCurrencyInfo from './hooks/useCurrencyInfo';
 import currencybg from './assets/currencybg.jpg';
+import Analytics from "./components/Analytics";
+import FavoritePairs from "./components/FavoritePairs";
+import ConversionHistory from "./components/ConversionHistory";
 
 function App() {
   const [amount, setAmount] = useState(0);
   const [from, setFrom] = useState("USD");
   const [to, setTo] = useState("INR");
   const [convertedAmount, setConvertedAmount] = useState(0);
+
   const [history, setHistory] = useState(
     JSON.parse(localStorage.getItem("conversionHistory")) || []
   );
   const [favorites, setFavorites] = useState(
     JSON.parse(localStorage.getItem("favorites")) || []
   );
+
+  const [isListening, setIsListening] = useState(false);
 
   const currencyData = useCurrencyInfo(from);
 
@@ -28,6 +34,60 @@ function App() {
     setConvertedAmount(amount)
     setAmount(convertedAmount)
   }
+
+  const startListening = () => {
+    const SpeechRecognition =
+      window.SpeechRecognition || window.webkitSpeechRecognition;
+
+    if (!SpeechRecognition) {
+      alert("Speech Recognition not supported");
+      return;
+    }
+
+    const recognition = new SpeechRecognition();
+
+    recognition.lang = "en-US";
+
+    recognition.start();
+
+    setIsListening(true);
+
+    recognition.onresult = (event) => {
+      const text = event.results[0][0].transcript.toLowerCase();
+
+      console.log(text);
+
+      const match = text.match(
+        /convert (\d+) (\w+) to (\w+)/
+      );
+
+      if (match) {
+        const amountValue = Number(match[1]);
+        const fromCurrency = match[2].toUpperCase();
+        const toCurrency = match[3].toUpperCase();
+
+        setAmount(amountValue);
+        setFrom(fromCurrency);
+        setTo(toCurrency);
+
+        setTimeout(() => {
+          setConvertedAmount(
+            amountValue * (currInfo[toCurrency] || 0)
+          );
+        }, 500);
+      }
+
+      setIsListening(false);
+    };
+
+    recognition.onerror = () => {
+      setIsListening(false);
+    };
+
+    recognition.onend = () => {
+      setIsListening(false);
+    };
+  };
 
   const convert = () => {
     const result = amount * currInfo[to];
@@ -119,6 +179,14 @@ function App() {
             </div>
 
             <button
+              type="button"
+              onClick={startListening}
+              className="w-full mb-2 bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition-all"
+            >
+              {isListening ? "🎙 Listening..." : "🎤 Voice Convert"}
+            </button>
+
+            <button
               type="submit"
               className="w-full bg-blue-600 text-white px-4 py-3 rounded-lg
               hover:bg-blue-700 hover:shadow-xl hover:-translate-y-1
@@ -127,29 +195,6 @@ function App() {
             >
               Convert {from.toUpperCase()} to {to.toUpperCase()}
             </button>
-
-            <div className="mt-4">
-              <h3 className="text-white font-semibold mb-2">
-                Favorite Pairs
-              </h3>
-
-              <div className="flex flex-wrap gap-2">
-                {favorites.map((pair) => (
-                  <button
-                    key={pair}
-                    onClick={() => {
-                      const [favFrom, favTo] = pair.split("-");
-
-                      setFrom(favFrom);
-                      setTo(favTo);
-                    }}
-                    className="bg-white/20 text-white px-3 py-1 rounded-lg"
-                  >
-                    ⭐ {pair}
-                  </button>
-                ))}
-              </div>
-            </div>
 
             <button
               type="button"
@@ -167,26 +212,22 @@ function App() {
                   );
                 }
               }}
-              className="w-full mt-2 bg-yellow-500 text-black px-4 py-2 rounded-lg"
+              className="w-full mt-2 bg-yellow-500 text-black px-4 py-2 rounded-lg hover:bg-yellow-400 transition-all"
             >
               ⭐ Save Pair
             </button>
 
-            <div className="mt-4 text-white">
-              <h3 className="font-semibold mb-2">
-                Recent Conversions
-              </h3>
+            <FavoritePairs
+              favorites={favorites}
+              setFavorites={setFavorites}
+              setFrom={setFrom}
+              setTo={setTo}
+            />
 
-              {history.map((item, index) => (
-                <div
-                  key={index}
-                  className="bg-white/20 rounded-lg p-2 mb-2 text-sm"
-                >
-                  {item.amount} {item.from} → {item.to}
-                  = {item.result}
-                </div>
-              ))}
-            </div>
+            <ConversionHistory
+              history={history}
+              setHistory={setHistory}
+            />
 
             <div className="mt-4 bg-white/20 rounded-lg p-3 text-white">
               <h3 className="font-semibold">
@@ -202,19 +243,12 @@ function App() {
               </p>
             </div>
 
-            <div className="mt-4 bg-white/20 rounded-lg p-3 text-white">
-              <h3 className="font-semibold mb-2">
-                Analytics
-              </h3>
-
-              <p>Total Conversions: {totalConversions}</p>
-
-              <p>Most Used Pair: {mostUsedPair}</p>
-
-              <p>Last Conversion: {lastConversion}</p>
-
-              <p>Favorites Saved: {favorites.length}</p>
-            </div>
+            <Analytics
+              totalConversions={totalConversions}
+              mostUsedPair={mostUsedPair}
+              lastConversion={lastConversion}
+              favoritesCount={favorites.length}
+            />
 
           </form>
         </div>
