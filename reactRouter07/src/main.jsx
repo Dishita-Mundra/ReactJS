@@ -1,6 +1,6 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import { BrowserRouter, createBrowserRouter, createRoutesFromElements } from "react-router-dom";
+import { BrowserRouter, createBrowserRouter, createRoutesFromElements, Route } from "react-router-dom";
 import './index.css'
 import { RouterProvider } from 'react-router-dom';
 import Layout from './Layout';
@@ -30,7 +30,11 @@ import Contact from './components/Contact/Contact';
 // ])
 
 const router = createBrowserRouter(
-  createRoutesFromElements
+  createRoutesFromElements(
+    <Route path='/' element={<Layout />}>
+      <Route />
+    </Route>
+  )
 )
 
 createRoot(document.getElementById('root')).render(
