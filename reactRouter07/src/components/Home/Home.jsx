@@ -32,12 +32,12 @@ export default function Home() {
                 </div>
 
                 <div className="absolute inset-0 w-full sm:my-20 sm:pt-1 pt-12 h-full ">
-                    <img className="w-96" src="https://www.pexels.com/photo/human-using-laptop-beside-teacup-on-the-wooden-table-221043/" alt="image1" />
+                    <img className="w-96" src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800" alt="image1" />
                 </div>
             </aside>
 
             <div className="grid  place-items-center sm:mt-20">
-                <img className="sm:w-96 w-48" src="https://www.pexels.com/photo/human-using-laptop-beside-teacup-on-the-wooden-table-221043/" alt="image2" />
+                <img className="sm:w-96 w-48" src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800" alt="image2" />  
             </div>
 
             <h1 className="text-center text-2xl sm:text-5xl py-10 font-medium">Lorem Ipsum Yojo</h1>
