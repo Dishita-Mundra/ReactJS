@@ -44,10 +44,10 @@ const router = createBrowserRouter(
         element={<Github />} />
     </Route>
   )
-)
+);
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <RouterProvider router={router} />
   </StrictMode>,
-)
+);
