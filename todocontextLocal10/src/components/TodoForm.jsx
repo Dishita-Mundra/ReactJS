@@ -1,8 +1,14 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 
 function TodoForm() {
     const [todo, setTodo] = useState("");
-    const {addTodo} = useContext(TodoContext);
+    const { addTodo } = useTodo();
+
+    const add = (e) => {
+        e.preventDefault();
+
+        if (!todo) return 
+    }
 
     return (
         <form className="flex">
