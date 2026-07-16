@@ -21,12 +21,13 @@ export class AuthService {
         this.account = new Account(this.client);
     }
 
+    // Register a new user
     async createAccount({ email, password, name }) {
         try {
             const userAccount = await this.account.create(ID.unique(), email, password, name);
 
             if (userAccount) {
-                // call another method
+                // Auto login after successful signup
                 return this.login({ email, password });
             } else {
                 return userAccount;
@@ -37,13 +38,35 @@ export class AuthService {
         }
     }
 
+    // Login existing user
     async login({ email, password }) {
 
         try {
+            // Create an email-password session
             return await this.client.account.createEmailSession(email, password);
 
         } catch (error) {
             throw error;
+        }
+    }
+
+    // Get currently logged-in user
+    async getCurrentUser() {
+        try {
+            return await this.account.get();
+        } catch (error) {
+            console.log("Appwrite service :: getCurrentUser :: error", error);
+        }
+
+        // Return null if no active session exists
+        return null;
+    }
+
+    async logout() {
+        try {
+            return await this.account.deleteSessions();
+        } catch (error) {
+            console.log("Appwrite service :: getCurrentUser :: error", error);
         }
     }
 }
