@@ -1,9 +1,16 @@
 import conf from '../conf.js';
 import { Client, ID, Databases, Storage, Query } from "appwrite";
 
+// Service class for handling database and file operations
 export class Service {
+
+    // Appwrite client instance
     client = new Client();
+
+    // Database service
     databases;
+
+    // Storage service
     bucket;
 
     constructor() {
@@ -11,10 +18,18 @@ export class Service {
 
             // Configure the Appwrite server URL
             .setEndpoint(conf.appwriteUrl)
+
+            // Set Appwrite project
             .setProject(conf.appwriteProjectId);
+
+        // Initialize database service
         this.databases = new Databases(this.client);
+
+        // Initialize storage service
+        this.bucket = new Storage(this.client);
     }
 
+    // Create a new blog post
     async createPost({ title, slug, content, featuredImage, status, userId }) {
         try {
             return await this.databases.createDocument(
@@ -34,6 +49,7 @@ export class Service {
         }
     }
 
+    // Update an existing post
     async updatePost(slug, { title, content, featuredImage, status }) {
         try {
             return await this.databases.updateDocument(
@@ -52,6 +68,7 @@ export class Service {
         }
     }
 
+    // Delete a post
     async deletePost(slug) {
 
         try {
@@ -68,6 +85,7 @@ export class Service {
         }
     }
 
+    // Fetch a single post
     async getPost(slug) {
         try {
             return await this.databases.getDocument(
@@ -81,6 +99,7 @@ export class Service {
         }
     }
 
+    // Fetch all active posts by default
     async getPosts(queries = [Query.equal("status", "active")]) {
         try {
             return await this.databases.listDocuments(
@@ -94,8 +113,9 @@ export class Service {
         }
     }
 
-    // file upload service
+    // ---------------- File Storage ----------------
 
+    // Upload an image/file to Appwrite Storage
     async uploadFile(file) {
         try {
             return await this.bucket.createFile(
@@ -109,9 +129,10 @@ export class Service {
         }
     }
 
+    // Delete a file from Storage
     async deleteFile(fileId) {
         try {
-            return await this.bucket.deleteFile(
+            await this.bucket.deleteFile(
                 conf.appwriteBucketId,
                 fileId
             )
@@ -122,6 +143,7 @@ export class Service {
         }
     }
 
+    // Get preview URL of a stored file
     getFilePreview(fileId) {
         return this.bucket.getFilePreview(
             conf.appwriteBucketId,
@@ -130,5 +152,7 @@ export class Service {
     }
 }
 
+// Single shared service instance
 const service = new Service();
+
 export default service;
