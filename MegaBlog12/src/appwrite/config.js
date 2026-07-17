@@ -52,8 +52,8 @@ export class Service {
         }
     }
 
-    async deletePost(slug){
-        
+    async deletePost(slug) {
+
         try {
             await this.databases.deleteDocument(
                 conf.appwriteDatabaseId,
@@ -67,6 +67,21 @@ export class Service {
             return false;
         }
     }
+
+    async getPost(slug) {
+        try {
+            return await this.databases.getDocument(
+                conf.appwriteDatabaseId,
+                conf.appwriteCollectionId,
+                slug
+            )
+        } catch (error) {
+            console.log("Appwrite service :: getPost :: error", error);
+            return false;
+        }
+    }
+
+    async getPosts(queries) { }
 }
 
 const service = new Service()
