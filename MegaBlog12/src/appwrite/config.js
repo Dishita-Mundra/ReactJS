@@ -155,4 +155,4 @@ export class Service {
 // Single shared service instance
 const service = new Service();
 
-export default service;
+export default service; 
