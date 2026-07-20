@@ -12,7 +12,6 @@ const authSlice = createSlice({
         login: (state, action) => { 
             state.status = true;
         }
-        
     }
 })
 
